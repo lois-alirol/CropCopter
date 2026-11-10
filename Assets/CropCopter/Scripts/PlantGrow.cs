@@ -86,6 +86,7 @@ public class PlantGrow : MonoBehaviour
             scoreManager.RemoveScore();
             
             GameObject sfx = Instantiate(explodeSound, camera.transform.position, camera.transform.rotation);
+            sfx.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SoundVolume");
             sfx.GetComponent<AudioSource>().Play();
             
             ParticleSystem fx = Instantiate(explodeParticles, transform.position, Quaternion.identity);
@@ -166,6 +167,7 @@ public class PlantGrow : MonoBehaviour
         if (other.gameObject.tag.Equals("Drone") && currentState == PlantState.RIPING && !isHarvested)
         {
             GameObject sfx = Instantiate(harvestSound, camera.transform.position, camera.transform.rotation);
+            sfx.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("SoundVolume");
             sfx.GetComponent<AudioSource>().Play();
             isHarvested = true;
             

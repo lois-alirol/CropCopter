@@ -161,7 +161,6 @@ GameObject:
   - component: {fileID: 5055415931667594420}
   - component: {fileID: 3161759055169569947}
   - component: {fileID: 5538815627911870881}
-  - component: {fileID: 8238185071904362613}
   m_Layer: 0
   m_Name: Tomato
   m_TagString: Untagged
@@ -245,18 +244,6 @@ MonoBehaviour:
   maxReadyTime: 8
   minExplosionTime: 3
   maxExplosionTime: 8
---- !u!114 &8238185071904362613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5668285892900988759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbffa155027484e40b74ac5794f53b4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FlashRed
 --- !u!1 &6075008500155303376
 GameObject:
   m_ObjectHideFlags: 0

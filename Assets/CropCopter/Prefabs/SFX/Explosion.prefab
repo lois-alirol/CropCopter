@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8210365357671937764}
   - component: {fileID: 6832519418657487031}
   m_Layer: 0
-  m_Name: SFX_Explosion
-  m_TagString: Untagged
+  m_Name: Explosion
+  m_TagString: SFX_Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

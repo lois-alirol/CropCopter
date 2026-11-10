@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1465693697741982126}
   - component: {fileID: 1903303985290731276}
   m_Layer: 0
-  m_Name: SFX_Harvest
-  m_TagString: Untagged
+  m_Name: Harvest
+  m_TagString: SFX_Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

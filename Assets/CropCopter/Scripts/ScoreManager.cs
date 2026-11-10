@@ -39,7 +39,7 @@ public class ScoreManager : MonoBehaviour
         score+= 1 * multiplier;
     }
     
-    public void RemoveScore(int multiplier = 5)
+    public void RemoveScore(int multiplier = 2)
     {
         score-= 1 * multiplier;
     }
