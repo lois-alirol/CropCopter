@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/CropCopter/Scenes/Game.unity
-    guid: b500d60846f2540f2930db30e083bbc6
-  - enabled: 1
     path: Assets/CropCopter/Scenes/MainMenu.unity
     guid: 81c14d26300eb4f0e9aaf37054035386
+  - enabled: 1
+    path: Assets/CropCopter/Scenes/Game.unity
+    guid: b500d60846f2540f2930db30e083bbc6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: e42ba76f259904a21a0c381ca9edb430, type: 3}
   m_UseUCBPForAssetBundles: 0
