@@ -9,8 +9,8 @@ public class SettingsManager : MonoBehaviour
     
     void Start()
     {
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
-        soundSlider.value = PlayerPrefs.GetFloat("SoundVolume");
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        soundSlider.value = PlayerPrefs.GetFloat("SoundVolume", 1f);
     }
 
     public void OnMusicSliderMove()
