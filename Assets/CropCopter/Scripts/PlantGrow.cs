@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+/*
+ * Les différents état des plantes
+ */
 public enum PlantState
 {
     FALLING,

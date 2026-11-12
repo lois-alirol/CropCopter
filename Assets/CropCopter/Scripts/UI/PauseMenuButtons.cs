@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+/*
+ * Gère les clics des boutons de l'interface de pause
+ */
 public class PauseMenuButtons : MonoBehaviour
 {
     public ScoreManager scoreManager;
@@ -11,6 +14,7 @@ public class PauseMenuButtons : MonoBehaviour
 
     void OnEnable()
     {
+        //par défaut invisible
         GetComponent<Canvas>().enabled = false;
         pauseAction.action.performed += OnPause;
     }
@@ -22,6 +26,8 @@ public class PauseMenuButtons : MonoBehaviour
 
     void OnPause(InputAction.CallbackContext ctx)
     {
+        // si le jeu est en pause on désactive et change l'état du bool
+        //sinon on le met a true et on affiche l'ui
         if (isPaused)
         {
             GetComponent<Canvas>().enabled = false;
@@ -36,6 +42,7 @@ public class PauseMenuButtons : MonoBehaviour
     
     public void Update()
     {
+        // on change le timescale a 0 si c'est en pause pour que tout s'arrete dans le jeu
         if (isPaused)
         {
             Time.timeScale = 0;
