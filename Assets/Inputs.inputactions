@@ -125,6 +125,17 @@
                     "action": "Water",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cdad855b-c507-44d7-afe2-6c9152d4b363",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Water",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -148,6 +159,17 @@
                     "name": "",
                     "id": "0fdbc8fc-ca24-416a-96ce-b0831869a13f",
                     "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "296c5d1b-757a-4dd6-9d5b-cc44e947c7b6",
+                    "path": "<Gamepad>/{Back}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

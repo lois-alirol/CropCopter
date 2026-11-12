@@ -13,15 +13,20 @@ public enum PlantState
     RIPING
 }
 
+/*
+ * Gère l'éolution d'une plante
+ */
 public class PlantGrow : MonoBehaviour
 {
+    // temps de vie aléatoire
     private float seedingTime;
     private float readyTime;
     private float explosionTime;
 
+    // par défaut une plante tombe
     private PlantState currentState = PlantState.FALLING;
     private float currentCooldown = 0f;
-
+    
     public ParticleSystem water;
     public ScoreManager scoreManager;
     private Animator growAnimator;
@@ -35,6 +40,7 @@ public class PlantGrow : MonoBehaviour
     public GameObject explodeSound;
     public GameObject harvestSound;
     
+    // les différents modèles pour chaque stade
     public GameObject stage0;
     public GameObject stage1;
     public GameObject stage2;
@@ -43,6 +49,7 @@ public class PlantGrow : MonoBehaviour
     private bool isHarvested = false;
     private int scoreMultiplier = 1;
     
+    // les temps min et max pour chaque stade
     public float minSeedingTime = 5f;
     public float maxSeedingTime = 15f;
     
@@ -59,11 +66,14 @@ public class PlantGrow : MonoBehaviour
 
         currentCooldown = seedingTime;
 
+        // lance l'animation de grandissement
         growAnimator = model.GetComponent<Animator>();
         growAnimator.SetTrigger("Grow");
 
+        // par défaut barre de vie au max
         lifeBarImage.fillAmount = 1f;
         
+        // on affiche que le stade 0 (la graine qui tombe)
         stage1.SetActive(false);
         stage2.SetActive(false);
         stage3.SetActive(false);
@@ -73,19 +83,23 @@ public class PlantGrow : MonoBehaviour
     {
         if (currentState == PlantState.FALLING && gameObject.transform.position.y < 0.3f)
         {
+            // on recentre la plante au millieu de la case la plus proche
             (Vector2, GameObject) box = gridManager.GetClosestBox(new Vector2(transform.position.x, transform.position.z));
             transform.position = new Vector3(box.Item1.x, gameObject.transform.position.y , box.Item1.y);
             
+            // on désactive la graine et on affiche le stade 1
             stage0.SetActive(false);
             stage1.SetActive(true);
             stage1.transform.localScale = stage0.transform.localScale;
             currentState = PlantState.SEEDING;
             
+            // on freeze toutes les positions et rotations
             gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
         
         if (currentCooldown <= 0 && currentState == PlantState.RIPING)
         {
+            // explosion d'une plante
             scoreManager.RemoveScore();
             
             GameObject sfx = Instantiate(explodeSound, camera.transform.position, camera.transform.rotation);
@@ -108,6 +122,7 @@ public class PlantGrow : MonoBehaviour
             
             currentState = PlantState.GROWING;
 
+            // on lance l'animation qui grandit encore plus
             growAnimator.SetFloat("GrowProgress", 1f);
             growAnimator.SetTrigger("GrowMore");
         }
@@ -123,7 +138,7 @@ public class PlantGrow : MonoBehaviour
         }
         
         
-        
+        // mise a jour de la durée de l'animation comme le tmeps est aléatoire
         if (currentState != PlantState.RIPING)
         {
             float duration = currentState == PlantState.SEEDING ? seedingTime : readyTime;
@@ -135,7 +150,7 @@ public class PlantGrow : MonoBehaviour
         }
 
         
-        
+        // mise a jour pour chaque état de la barre de vie
         if (currentState == PlantState.SEEDING)
         {
             lifeBarImage.color = new Color32(255, 132, 0, 255);
@@ -154,11 +169,14 @@ public class PlantGrow : MonoBehaviour
         
         
         currentCooldown -= Time.deltaTime;
+        
+        // la barre de vie regarde la camera
         lifeBarUi.transform.LookAt(camera.transform);
     }
 
     public void OnTriggerStay(Collider other)
     {
+        // si c'est de l'eau et que l'animation se joue (=le joueur appuie sur clic gauche)
         if (other.gameObject.tag.Equals("Water") && water.isPlaying)
         {
             currentCooldown -= 0.05f;
@@ -167,6 +185,7 @@ public class PlantGrow : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        //récupération d'une plante si elle n'est pas morte déja et pas récupérée pour eviter la dupli de points
         if (other.gameObject.tag.Equals("Drone") && currentState == PlantState.RIPING && !isHarvested)
         {
             GameObject sfx = Instantiate(harvestSound, camera.transform.position, camera.transform.rotation);
@@ -180,6 +199,7 @@ public class PlantGrow : MonoBehaviour
         }
     }
 
+    // change le multiplicateur de score
     public void SetScoreMultiplier(int scoreMultiplier)
     {
         this.scoreMultiplier = scoreMultiplier;
